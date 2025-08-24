@@ -6,13 +6,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Prefer Atlas first, fallback to Local
-MONGO_URI_ATLAS = os.getenv(
-    "MONGO_URI_ATLAS",
-    "mongodb+srv://swatibhadrapur:Sahana03@mcacluster24.9wd0u.mongodb.net/leaveapp?retryWrites=true&w=majority"
-)
+MONGO_URI_ATLAS = os.getenv("MONGO_URI_ATLAS")
 MONGO_URI_LOCAL = os.getenv("MONGO_URI_LOCAL", "mongodb://localhost:27017/leaveapp")
-
 # Helper function to extract DB name from URI
 def get_db_name(uri: str, default: str = "leaveapp") -> str:
     try:
