@@ -1,0 +1,41 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Start Backend Server",
+			"type": "shell",
+			"command": "D:/INTERNSHIP/amp-inbox-leave-approval/.venv/Scripts/python.exe",
+			"args": [
+				"-m",
+				"uvicorn",
+				"app.main:app",
+				"--reload",
+				"--host",
+				"0.0.0.0",
+				"--port",
+				"8000"
+			],
+			"isBackground": true,
+			"group": "build"
+		},
+		{
+			"label": "Start Backend Server",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-c",
+				"cd backend; ..//.venv//Scripts//python.exe -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000"
+			],
+			"isBackground": true,
+			"group": "build"
+		},
+		{
+			"label": "Start Backend Server",
+			"type": "shell",
+			"command": "cd backend && ../.venv/Scripts/python.exe -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000",
+			"args": [],
+			"isBackground": true,
+			"group": "build"
+		}
+	]
+}

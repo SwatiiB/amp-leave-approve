@@ -1,0 +1,238 @@
+<!doctype html>
+<html ⚡4email>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="amp-cache-transform" content="google;v=1">
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+  <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+  <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+  
+  <style amp4email-boilerplate>body{visibility:hidden}</style>
+  <style amp-custom>
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;margin:0;padding:20px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%)}
+    .container{max-width:600px;margin:0 auto;background:#fff;border-radius:16px;box-shadow:0 20px 40px rgba(0,0,0,.1);overflow:hidden}
+    .header{background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 100%);color:#fff;padding:30px;text-align:center}
+    .header h1{margin:0 0 10px 0;font-size:28px;font-weight:700}
+    .header p{margin:0;opacity:.9;font-size:16px}
+    .content{padding:30px}
+    .employee-info{background:#f8fafc;border-radius:12px;padding:20px;margin-bottom:24px;border-left:4px solid #3b82f6}
+    .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+    .info-item{padding:12px;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb}
+    .info-label{font-size:12px;font-weight:600;color:#6b7280;text-transform:uppercase;margin-bottom:4px}
+    .info-value{font-size:16px;font-weight:600;color:#1f2937}
+    .leave-reason{background:#fef3c7;border:1px solid #f59e0b;border-radius:12px;padding:20px;margin:24px 0}
+    .leave-reason h3{margin:0 0 12px 0;color:#92400e;font-size:16px}
+    .leave-reason p{margin:0;color:#451a03;line-height:1.6}
+    .actions{background:#f1f5f9;padding:30px;text-align:center}
+    .action-buttons{display:flex;gap:16px;justify-content:center;margin-bottom:24px}
+    .btn{padding:16px 32px;border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;min-width:140px;text-decoration:none;display:inline-block}
+    .btn-approve{background:#10b981;color:#fff}
+    .btn-reject{background:#ef4444;color:#fff}
+    .status-badge{display:inline-block;padding:6px 16px;border-radius:20px;font-size:14px;font-weight:600;text-transform:uppercase}
+    .status-pending{background:#fef3c7;color:#92400e;border:1px solid #f59e0b}
+    .urgent-badge{background:#fee2e2;color:#dc2626;padding:4px 12px;border-radius:12px;font-size:12px;font-weight:600;margin-left:12px}
+    .days-info{background:#dbeafe;color:#1e40af;padding:12px 16px;border-radius:8px;font-weight:600;text-align:center;margin:16px 0}
+    .form-group{margin-bottom:16px;text-align:left}
+    .form-label{display:block;font-size:14px;font-weight:600;color:#374151;margin-bottom:8px}
+    .form-textarea{width:100%;padding:12px 16px;border:2px solid #e5e7eb;border-radius:8px;font-size:14px;resize:vertical;min-height:80px;box-sizing:border-box}
+    .form-textarea:focus{outline:none;border-color:#3b82f6}
+    .footer{background:#1f2937;color:#9ca3af;padding:20px;text-align:center;font-size:14px}
+    .footer a{color:#60a5fa;text-decoration:none}
+    .message{padding:16px;border-radius:8px;margin:16px 0;text-align:center}
+    .message-success{background:#d1fae5;border:1px solid #10b981;color:#065f46}
+    .message-error{background:#fee2e2;border:1px solid #ef4444;color:#991b1b}
+    @media (max-width:600px){.info-grid{grid-template-columns:1fr}.action-buttons{flex-direction:column;align-items:center}.btn{width:200px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>📋 Leave Request</h1>
+      <p>Action Required - Employee Leave Application</p>
+      <div class="status-badge status-pending">Pending Approval</div>
+      <span class="urgent-badge" [hidden]="!isUrgent">🚨 URGENT</span>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- Employee Information -->
+      <div class="employee-info">
+        <h2 style="margin:0 0 16px 0;color:#1f2937;font-size:20px">👤 Employee Information</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-label">Employee Name</div>
+            <div class="info-value">{{employee_name}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Employee ID</div>
+            <div class="info-value">{{employee_id}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Email</div>
+            <div class="info-value">{{employee_email}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Department</div>
+            <div class="info-value">{{department}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Phone</div>
+            <div class="info-value">{{phone_number}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Manager</div>
+            <div class="info-value">{{manager_email}}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Leave Details -->
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">Leave Type</div>
+          <div class="info-value">{{leave_type}}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Applied On</div>
+          <div class="info-value">{{submitted_at}}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">From Date</div>
+          <div class="info-value">{{from_date}}</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">To Date</div>
+          <div class="info-value">{{to_date}}</div>
+        </div>
+      </div>
+
+      <!-- Days Information -->
+      <div class="days-info">📅 Total Leave Duration: {{total_days}} day(s)</div>
+
+      <!-- Leave Reason -->
+      <div class="leave-reason">
+        <h3>📝 Reason for Leave</h3>
+        <p>{{reason}}</p>
+      </div>
+    </div>
+
+    <!-- Action Section -->
+    <div class="actions">
+      <h3 style="margin:0 0 20px 0;color:#1f2937">Take Action on This Request</h3>
+      
+      <div class="action-buttons">
+        <!-- Approve Button -->
+        <form method="POST" 
+              action-xhr="{{api_base_url}}/api/leave/amp/approve"
+              custom-validation-reporting="as-you-go"
+              target="_top"
+              on="submit:AMP.setState({submitting: true, action: 'approve'})">
+          <input type="hidden" name="token" value="{{action_token}}">
+          <input type="hidden" name="leave_request_id" value="{{leave_request_id}}">
+          <button type="submit" class="btn btn-approve" [disabled]="submitting">
+            <span [hidden]="submitting">✅ APPROVE REQUEST</span>
+            <span [hidden]="!submitting">Processing...</span>
+          </button>
+        </form>
+
+        <!-- Reject Button -->
+        <form method="POST" 
+              action-xhr="{{api_base_url}}/api/leave/amp/reject"
+              custom-validation-reporting="as-you-go"
+              target="_top"
+              on="submit:AMP.setState({submitting: true, action: 'reject'})">
+          <input type="hidden" name="token" value="{{action_token}}">
+          <input type="hidden" name="leave_request_id" value="{{leave_request_id}}">
+          <button type="submit" class="btn btn-reject" [disabled]="submitting">
+            <span [hidden]="submitting">❌ REJECT REQUEST</span>
+            <span [hidden]="!submitting">Processing...</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Comments Form -->
+      <div style="margin-top:24px">
+        <h4 style="margin:0 0 16px 0;color:#1f2937">Add Comments (Optional)</h4>
+        <form method="POST" 
+              action-xhr="{{api_base_url}}/api/leave/amp/comment"
+              custom-validation-reporting="as-you-go"
+              target="_top"
+              on="submit:AMP.setState({submitting: true})">
+          <input type="hidden" name="token" value="{{action_token}}">
+          <input type="hidden" name="leave_request_id" value="{{leave_request_id}}">
+          
+          <div class="form-group">
+            <label class="form-label" for="comments">Manager Comments:</label>
+            <textarea id="comments" 
+                     name="comments" 
+                     class="form-textarea"
+                     placeholder="Add comments about this leave request..."
+                     maxlength="500"
+                     required></textarea>
+          </div>
+          
+          <div style="display:flex;gap:12px;justify-content:center">
+            <button type="submit" name="action" value="approve" class="btn btn-approve" [disabled]="submitting">
+              ✅ Approve with Comments
+            </button>
+            <button type="submit" name="action" value="reject" class="btn btn-reject" [disabled]="submitting">
+              ❌ Reject with Comments
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Quick Links -->
+      <div style="margin-top:30px;padding-top:20px;border-top:1px solid #e5e7eb">
+        <p style="margin:0 0 12px 0;color:#6b7280;font-size:14px">Quick Actions:</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+          <a href="{{dashboard_url}}" style="color:#3b82f6;text-decoration:none;font-weight:600;font-size:14px">📊 Dashboard</a>
+          <a href="{{all_requests_url}}" style="color:#3b82f6;text-decoration:none;font-weight:600;font-size:14px">📋 All Requests</a>
+          <a href="{{employee_profile_url}}" style="color:#3b82f6;text-decoration:none;font-weight:600;font-size:14px">👤 Profile</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Automated email from Leave Management System</p>
+      <p><a href="{{unsubscribe_url}}">Unsubscribe</a> | <a href="{{help_url}}">Support</a></p>
+      <p style="margin-top:12px;font-size:12px;opacity:0.8">© 2024 Leave Management System</p>
+    </div>
+  </div>
+
+  <!-- Success Messages -->
+  <div submit-success>
+    <template type="amp-mustache">
+      <div class="message message-success">
+        <h3 style="margin:0 0 8px 0">✅ Action Completed!</h3>
+        <p style="margin:0">Leave request {{action}} successfully. Employee will be notified.</p>
+      </div>
+    </template>
+  </div>
+
+  <!-- Error Messages -->
+  <div submit-error>
+    <template type="amp-mustache">
+      <div class="message message-error">
+        <h3 style="margin:0 0 8px 0">❌ Action Failed</h3>
+        <p style="margin:0">Error: {{error.message}}. Please try again or contact support.</p>
+      </div>
+    </template>
+  </div>
+
+  <!-- AMP State for UI interactions -->
+  <amp-state id="leaveAction">
+    <script type="application/json">
+      {
+        "submitting": false,
+        "action": "",
+        "isUrgent": {{is_urgent}}
+      }
+    </script>
+  </amp-state>
+</body>
+</html>
